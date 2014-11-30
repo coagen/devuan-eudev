@@ -36,8 +36,8 @@ else
   CONFFLAGS += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
 endif
 
-ifdef USE_SELINUX
-  CONFFLAGS_deb += --with-selinux
+ifndef USE_SELINUX
+  CONFFLAGS_deb += --disable-selinux
 endif
 
 ifdef BUILD_UDEB
