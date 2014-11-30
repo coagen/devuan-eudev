@@ -165,7 +165,6 @@ endif
 	cp -a docs/gudev/html/* \
 		$(CURDIR)/debian/libgudev-1.0-dev/usr/share/gtk-doc/html/gudev/
 	# more workaround for libeudev docs
-	mkdir -p $(CURDIR)/debian/libudev0/usr/share/doc/libudev0/html/
 	cp -a docs/libudev/html/* \
 		$(CURDIR)/debian/libudev0/usr/share/doc/libudev0/html/
 
