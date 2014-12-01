@@ -166,11 +166,11 @@ endif
 		$(CURDIR)/debian/libgudev-1.0-dev/usr/share/gtk-doc/html/gudev/
 	# more workaround for libeudev docs
 	cp -a docs/libudev/html/* \
-		$(CURDIR)/debian/libudev0/usr/share/doc/libudev0/html/
+		$(CURDIR)/debian/libudev1/usr/share/doc/libudev1/html/
 
 	dh_link
 
-	dh_installdocs -peudev -plibudev-dev --link-doc=libudev0
+	dh_installdocs -peudev -plibudev-dev --link-doc=libudev1
 	dh_installdocs -pgir1.2-gudev-1.0 -plibgudev-1.0-dev --link-doc=libgudev-1.0-0
 	rm $D/usr/share/doc/eudev
 	dh_installdocs README
