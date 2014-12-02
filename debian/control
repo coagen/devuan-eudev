@@ -76,6 +76,15 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: libudev shared library
  This library provides access to udev device information.
 
+Package: libudev1-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: libudev1 (= ${binary:Version}), ${misc:Depends}
+Description: debugging symbols for for libudev1
+ This package contains debugging symbols for the libudev1 
+ library from the eudev package.
+
 Package: libudev-dev
 Section: libdevel
 Priority: optional

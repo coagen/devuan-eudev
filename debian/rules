@@ -186,7 +186,7 @@ endif
 	dh_installinit --name=udevmonitor --no-start
 	dh_installinit --name=udev-fallback-graphics --no-start
 
-	dh_strip
+	dh_strip -plibudev1 --dbg-package=libudev1-dbg
 	dh_compress
 	dh_fixperms
 	dh_makeshlibs --add-udeb=udev-gtk-udeb -- -c4
