@@ -132,7 +132,7 @@
 +# the firmware was not found
 +echo -1 > /sys/$DEVPATH/loading
 +
-+RUNDIR=$(udevadm info --run)
++RUNDIR="/run"
 +
 +if [ -d "$RUNDIR" ]; then
 +    mkdir -p "$RUNDIR/firmware-missing/"

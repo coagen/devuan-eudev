@@ -14,7 +14,7 @@ extra_initramfs
 extra_installer
 extra_modprobeconf
 extra_misc
-dev_root_rule
+#dev_root_rule
 
 # Debian integration
 #dont-build-some-helpers

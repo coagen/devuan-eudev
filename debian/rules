@@ -108,7 +108,6 @@ binary-arch: build checkroot
 
 	install --mode=755 extra/*.agent $D/lib/udev/
 	install --mode=755 extra/create_static_nodes $D/lib/udev/
-	install --mode=755 extra/write_dev_root_rule $D/lib/udev/
 	install --mode=644 extra/hotplug.functions $D/lib/udev/
 
 #	cd $D/lib/udev/rules.d/ && rm 61-persistent-storage-edd.rules
