@@ -21,10 +21,3 @@
 +    > $RUNDIR/root-link-rule
 +mv $RUNDIR/root-link-rule $RUNDIR/rules.d/61-dev-root-link.rules
 +
---- a/init/udev.service.in
-+++ b/init/udev.service.in
-@@ -11,3 +11,4 @@ OOMScoreAdjust=-1000
- Sockets=udev-control.socket udev-kernel.socket
- Restart=on-failure
- ExecStart=@libexecdir@/udevd
-+ExecStartPre=@libexecdir@/write_dev_root_rule
