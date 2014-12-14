@@ -57,7 +57,7 @@
 +. /usr/share/initramfs-tools/hook-functions
 +
 +copy_exec /sbin/udevd      /sbin
-+copy_exec /sbin/udevadm    /sbin
++copy_exec /usr/bin/udevadm    /sbin
 +
 +mkdir -p $DESTDIR/etc/udev
 +cp -p /etc/udev/udev.conf $DESTDIR/etc/udev/
@@ -92,7 +92,7 @@
 +esac
 +
 +cp /lib/udev/hotplug.functions $DESTDIR/lib/udev/
-+for program in firmware.agent ata_id edd_id scsi_id; do
++for program in firmware.agent ata_id scsi_id; do
 +  copy_exec /lib/udev/$program /lib/udev
 +done
 +copy_exec /sbin/blkid /sbin
