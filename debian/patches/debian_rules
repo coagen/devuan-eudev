@@ -507,7 +507,7 @@
 +KERNEL=="pht[0-9]*",				GROUP="tape"
 +
 +# sound devices
-+SUBSYSTEM=="sound",				GROUP="audio",
++SUBSYSTEM=="sound",				GROUP="audio", \
 +	OPTIONS+="static_node=snd/seq", OPTIONS+="static_node=snd/timer"
 +
 +# ieee1394 devices
