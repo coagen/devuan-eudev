@@ -203,7 +203,7 @@ stop_on_upstart_upgrade() {
   then
     # We have to stop udev before we can restart it under upstart in the
     # postinst.
-    invoke-rc.d udev stop
+    invoke-rc.d eudev stop
   fi
 }
 

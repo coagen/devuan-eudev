@@ -81,7 +81,7 @@ enable_udev() {
   TEMPDEV=$(tempdir)
 
   export UDEV_ROOT=$TEMPDEV
-  invoke-rc.d udev restart
+  invoke-rc.d eudev restart
 
   if ! mount -n -o size=10M,mode=0755 -t tmpfs tmpfs $TEMPDEV; then
     echo "Not enabling udev because the system lacks tmpfs support!"
@@ -109,7 +109,7 @@ enable_udev() {
 
   # start the final daemon with the normal configuration
   unset UDEV_ROOT
-  invoke-rc.d udev restart
+  invoke-rc.d eudev restart
 
   # XXX Some people reported that the directory was not empty.
   # This should fix the issue (udevd reopens the file for each event):
@@ -190,7 +190,7 @@ case "$1" in
 	  rm /etc/udev/kernel-upgrade
 	elif can_start_udevd; then
 	  rm -f /run/systemd/system/udev.service
-	  invoke-rc.d udev restart
+	  invoke-rc.d eudev restart
 	fi
       fi
     fi

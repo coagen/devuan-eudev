@@ -43,7 +43,7 @@ endif
 ifdef BUILD_UDEB
 BUILD_UDEB_TARGET := .stamp-build-udeb
 else
-NO_PACKAGE := --no-package=udev-udeb --no-package=udev-gtk-udeb
+NO_PACKAGE := --no-package=eudev-udeb --no-package=eudev-gtk-udeb
 endif
 
 ##############################################################################
@@ -107,6 +107,7 @@ binary-arch: build checkroot
 	cd $D && rmdir lib/$(DEB_HOST_MULTIARCH) 
 
 	install --mode=755 extra/*.agent $D/lib/udev/
+	install --mode=755 extra/create_static_nodes $D/lib/udev/
 	install --mode=644 extra/hotplug.functions $D/lib/udev/
 
 #	cd $D/lib/udev/rules.d/ && rm 61-persistent-storage-edd.rules
@@ -147,7 +148,7 @@ ifdef BUILD_UDEB
 	install --mode=755 extra/udev.startup \
 		$(DU)/lib/debian-installer/start-udev
 	install --mode=755 extra/udev.base-installer \
-		$(DU)/usr/lib/base-installer.d/05udev
+		$(DU)/usr/lib/base-installer.d/05eudev
 
 	cp -a build-udeb/src/libudev/.libs/libudev.so.1* $(DGU)/lib/
 #ifeq ($(DEB_HOST_ARCH),$(filter $(DEB_HOST_ARCH),sparc sparc64))
@@ -161,17 +162,17 @@ endif
 
 	# workaround for #555111
 	cp -a docs/libudev/html/* \
-		$(CURDIR)/debian/libudev-dev/usr/share/gtk-doc/html/libudev/
+		$(CURDIR)/debian/libeudev-dev/usr/share/gtk-doc/html/libudev/
 	cp -a docs/gudev/html/* \
-		$(CURDIR)/debian/libgudev-1.0-dev/usr/share/gtk-doc/html/gudev/
+		$(CURDIR)/debian/libgeudev-1.0-dev/usr/share/gtk-doc/html/gudev/
 	# more workaround for libeudev docs
 	cp -a docs/libudev/html/* \
-		$(CURDIR)/debian/libudev1/usr/share/doc/libudev1/html/
+		$(CURDIR)/debian/libeudev1/usr/share/doc/libudev1/html/
 
 	dh_link
 
-	dh_installdocs -peudev -plibudev-dev --link-doc=libudev1
-	dh_installdocs -pgir1.2-gudev-1.0 -plibgudev-1.0-dev --link-doc=libgudev-1.0-0
+	dh_installdocs -peudev -plibeudev-dev --link-doc=libeudev1
+	dh_installdocs -pgir1.2-geudev-1.0 -plibgeudev-1.0-dev --link-doc=libgeudev-1.0-0
 	rm $D/usr/share/doc/eudev
 	dh_installdocs README
 #FIXME
@@ -180,16 +181,16 @@ endif
 	dh_installdebconf
 	dh_installinit --no-start --update-rcd-params='start 03 S .'
 	dh_installinit --no-start --update-rcd-params='start 36 S .' \
-		--name=udev-mtab
-	dh_installinit --name=udev-finish --no-start -- start 37 S .
-	dh_installinit --name=udevtrigger --no-start
-	dh_installinit --name=udevmonitor --no-start
-	dh_installinit --name=udev-fallback-graphics --no-start
+		--name=eudev-mtab
+	dh_installinit --name=eudev-finish --no-start -- start 37 S .
+	dh_installinit --name=eudevtrigger --no-start
+	dh_installinit --name=eudevmonitor --no-start
+	dh_installinit --name=eudev-fallback-graphics --no-start
 
-	dh_strip -plibudev1 --dbg-package=libudev1-dbg
+	dh_strip -plibeudev1 --dbg-package=libeudev1-dbg
 	dh_compress
 	dh_fixperms
-	dh_makeshlibs --add-udeb=udev-gtk-udeb -- -c4
+	dh_makeshlibs --add-udeb=eudev-gtk-udeb -- -c4
 	dh_shlibdeps --exclude=/lib/udev/udev-acl -- --warnings=7
 	dh_girepository
 	dh_installdeb
